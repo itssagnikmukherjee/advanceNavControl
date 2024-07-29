@@ -19,16 +19,15 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
 @Composable
-fun SecondScreen(navController: NavController){
+fun SecondScreen(name:String,age:String, navToFirstScreen:()->Unit){
     Column(modifier= Modifier
         .padding()
         .fillMaxSize().background(Color(0xFF3498db)), horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center){
-        Text(text = "Any Screen", fontSize = 44.sp, fontWeight = FontWeight.Bold, color = Color.White)
+        Text(text = "Hello! $name", fontSize = 44.sp, fontWeight = FontWeight.Bold, color = Color.White)
+        Text(text = "You are $age now \uD83D\uDE0D", fontSize = 44.sp, fontWeight = FontWeight.Bold, color = Color.White)
         Spacer(modifier = Modifier.height(20.dp))
-        Button(onClick = { navController.navigate("first"){
-            popUpTo("second"){inclusive = true}
-        } }) {
+        Button(onClick = {navToFirstScreen()}) {
             Text(text = "Prev Screen")
         }
     }
